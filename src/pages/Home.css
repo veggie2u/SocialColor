@@ -1,0 +1,41 @@
+.container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .container strong {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  
+  .container p {
+    font-size: 16px;
+    line-height: 22px;
+    color: #8c8c8c;
+    margin: 0;
+  }
+  
+  .container a {
+    text-decoration: none;
+  }
+
+  .cell1 {
+      background-color: red;
+      height: 100px;
+  }
+
+  .cell2 {
+      background-color: green;
+      height: 100px;
+  }
+
+  .cell3 {
+      background-color: blue;
+      height: 100px;
+  }
+
+  .cell4 {
+      background-color: yellow;
+      height: 100px;
+  }
+

@@ -1,6 +1,5 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
-import ExploreContainer from '../components/ExploreContainer';
 import './Home.css';
 
 const Home: React.FC = () => {
@@ -8,16 +7,27 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Blank</IonTitle>
+          <IonTitle>Social Color</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer />
+      <IonContent>
+        <div className="container">
+          <strong>Welcome to Social Color</strong>
+          <IonGrid class="ion-padding">
+            <IonRow>
+              <IonCol className="cell1"></IonCol>
+              <IonCol className="cell2"></IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol className="cell3"></IonCol>
+              <IonCol className="cell4"></IonCol>
+            </IonRow>
+          </IonGrid>
+          <p>
+            <IonButton size="large" routerLink="/login">Login</IonButton>
+            <IonButton size="large" color="secondary" routerLink="/register">Register</IonButton>
+          </p>
+        </div>
       </IonContent>
     </IonPage>
   );
