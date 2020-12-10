@@ -1,18 +1,25 @@
-import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonLabel, IonLoading, IonPage, IonRow, IonTitle, IonToggle, IonToolbar } from '@ionic/react';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonLabel, IonLoading, IonPage, IonRow, IonTitle, IonToggle, IonToolbar } from '@ionic/react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import './ColorPage.css';
 import { logoutUser } from '../utils/firebaseApi'
-import { useHistory } from 'react-router';
-import { logOutOutline, settingsOutline } from 'ionicons/icons';
+import { useHistory } from 'react-router'
+import { logOutOutline, settingsOutline } from 'ionicons/icons'
+import { ColorResult, TwitterPicker } from 'react-color';
+import { setColorAction } from '../redux/actions';
+import { useDispatch } from 'react-redux';
 
 const ColorPage: React.FC = () => {
   const userEmail = useSelector((state: any) => state.user.email)
   const userName = useSelector((state: any) => state.config.name)
+  const color = useSelector((state: any) => state.data.color)
+
   const history = useHistory()
+  const dispatch = useDispatch()
+
   const [loggingOut, setLoggingOut] = useState(false)
   const [isOn, setIsOn] = useState(true)
-  const [color, setColor] = useState('green')
+  // const [color, setColor] = useState('green')
 
   function logout() {
     setLoggingOut(true)
@@ -27,6 +34,11 @@ const ColorPage: React.FC = () => {
 
   function goConfig() {
     history.push("/config")
+  }
+
+  function changeColor(color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) {
+    // setColor(color.hex)
+    dispatch(setColorAction({ color: color.hex, user: userName ? userName : userEmail }))
   }
 
   return (
@@ -58,9 +70,13 @@ const ColorPage: React.FC = () => {
           <IonLabel>Social Color is {isOn ? 'On' : 'Off'}</IonLabel>
           <IonToggle checked={isOn} onIonChange={(e) => turnOnOff(e.detail.checked)} />
         </IonItem>
+        <TwitterPicker
+          color={color}
+          onChangeComplete={changeColor}
+        />
       </IonContent>
     </IonPage>
   );
 };
 
-export default ColorPage;
+export default ColorPage

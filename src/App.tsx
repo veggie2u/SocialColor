@@ -27,7 +27,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import { getCurrentUser } from './utils/firebaseApi';
 import { useDispatch } from 'react-redux';
-import { setUserState } from './redux/actions';
+import { setUserAction } from './redux/actions';
 import Config from './pages/Config';
 
 const Routing: React.FC = () => {
@@ -52,10 +52,10 @@ const App: React.FC = () => {
   useEffect(() => {
     getCurrentUser().then((user: any) => {
       if (user) {
-        dispatch(setUserState(user))    
+        dispatch(setUserAction(user))    
         window.history.replaceState({}, '', '/colorPage')
       } else {
-        dispatch(setUserState({}))
+        dispatch(setUserAction({}))
         window.history.replaceState({}, '', '/')
       }
       setLoading(false)

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 // import { saveConfigToFirebase } from '../firebaseApi'
 import { toast } from '../utils/toast'
-import { setConfigState } from '../redux/actions';
+import { setConfigAction } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Config: React.FC = () => {
@@ -21,7 +21,7 @@ const Config: React.FC = () => {
     // const res: any = await saveConfigToFirebase({ name: name })
     setLoading(false)
     // if (res) {
-    dispatch(setConfigState({ name: name }))
+    dispatch(setConfigAction({ name: name }))
     toast('Got it!')
     goBack()
     // } else {
