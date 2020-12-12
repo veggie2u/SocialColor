@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, IonSpinner } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
@@ -25,10 +25,10 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import { getCurrentUser } from './utils/firebaseApi';
 import { useDispatch } from 'react-redux';
 import { setUserAction } from './redux/actions';
 import Config from './pages/Config';
+import { FirebaseContext } from './utils/firebase';
 
 const Routing: React.FC = () => {
   return (
@@ -46,11 +46,12 @@ const Routing: React.FC = () => {
 }
 
 const App: React.FC = () => {
+  const { api } = useContext(FirebaseContext) as ContextType
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    getCurrentUser().then((user: any) => {
+    api.getCurrentUser().then((user: any) => {
       if (user) {
         dispatch(setUserAction(user))    
         window.history.replaceState({}, '', '/colorPage')

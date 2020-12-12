@@ -1,11 +1,11 @@
 import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonLoading, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './Home.css';
-import { loginUser } from '../utils/firebaseApi'
 import { toast } from '../utils/toast'
-import { setUserState } from '../redux/actions';
+import { setUserAction } from '../redux/actions';
 import { useDispatch } from 'react-redux';
+import { FirebaseContext } from '../utils/firebase';
 
 const Login: React.FC = () => {
   const [password, setPassword] = useState<string>('')
@@ -13,13 +13,13 @@ const Login: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const dispatch = useDispatch()
   const history = useHistory()
-
+  const { api } = useContext(FirebaseContext) as ContextType
   async function login() {
     setLoading(true)
-    const res: any = await loginUser(email, password)
+    const res: any = await api.loginUser(email, password)
     setLoading(false)
     if (res) {
-      dispatch(setUserState(res.user))
+      dispatch(setUserAction(res.user))
       history.replace('/colorPage')
       toast('Succesfully logged in')
     } else {

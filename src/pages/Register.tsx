@@ -1,16 +1,17 @@
 import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonLoading, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from '../utils/toast';
 import './Home.css';
-import { registerUser } from '../utils/firebaseApi'
+import { FirebaseContext } from '../utils/firebase';
 
 const Register: React.FC = () => {
   const [password, setPassword] = useState<string>('')
   const [confirmPassword, setConfirmPassword] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
-
+  const { api } = useContext(FirebaseContext) as ContextType
+  
   async function register() {
     if (password !== confirmPassword) {
       return toast('Passwords do not match')
@@ -20,7 +21,7 @@ const Register: React.FC = () => {
     }
 
     setLoading(true)
-    const res = await registerUser(email, password)
+    const res = await api.registerUser(email, password)
     setLoading(false)
     if (res) {
       toast("You are now registered", 3000)

@@ -1,13 +1,13 @@
 import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonLabel, IonLoading, IonPage, IonRow, IonTitle, IonToggle, IonToolbar } from '@ionic/react'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useSelector } from 'react-redux'
 import './ColorPage.css';
-import { logoutUser } from '../utils/firebaseApi'
 import { useHistory } from 'react-router'
 import { logOutOutline, settingsOutline } from 'ionicons/icons'
 import { ColorResult, TwitterPicker } from 'react-color';
 import { setColorAction } from '../redux/actions';
 import { useDispatch } from 'react-redux';
+import { FirebaseContext } from '../utils/firebase';
 
 const ColorPage: React.FC = () => {
   const userEmail = useSelector((state: any) => state.user.email)
@@ -21,9 +21,11 @@ const ColorPage: React.FC = () => {
   const [isOn, setIsOn] = useState(true)
   // const [color, setColor] = useState('green')
 
+  const { api } = useContext(FirebaseContext) as ContextType
+  
   function logout() {
     setLoggingOut(true)
-    logoutUser()
+    api.logoutUser()
     setLoggingOut(false)
     history.replace('/')
   }

@@ -1,7 +1,6 @@
 import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonLoading, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-// import { saveConfigToFirebase } from '../firebaseApi'
 import { toast } from '../utils/toast'
 import { setConfigAction } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
