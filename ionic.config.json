@@ -1,5 +1,7 @@
 {
   "name": "socialColor",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react"
 }

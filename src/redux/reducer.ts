@@ -1,9 +1,10 @@
 const defaultState = {
     user: {},
     config: {},
-    data: {
-        color: 'red'
-    }
+    colors: [
+        { color: 'grey', name: 'test', timestamp: '123' }
+    ],
+    currentColor: {},
 }
 
 export default function reducer(state = defaultState, { type, payload }: { type: string, payload: any}): any {
@@ -22,13 +23,11 @@ export default function reducer(state = defaultState, { type, payload }: { type:
                     name: payload.name
                 }
             }
-        case 'SET_COLOR_ACTION':
+        case 'SET_COLORS_ACTION':
             return {
                 ...state,
-                data: {
-                    color: payload.color
-                }
+                colors: payload.colors
             }
-    }
+        }
     return state
 }

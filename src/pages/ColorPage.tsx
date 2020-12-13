@@ -1,27 +1,31 @@
 import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonLabel, IonLoading, IonPage, IonRow, IonTitle, IonToggle, IonToolbar } from '@ionic/react'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import './ColorPage.css';
 import { useHistory } from 'react-router'
 import { logOutOutline, settingsOutline } from 'ionicons/icons'
-import { ColorResult, TwitterPicker } from 'react-color';
-import { setColorAction } from '../redux/actions';
-import { useDispatch } from 'react-redux';
+import { ColorResult, SwatchesPicker } from 'react-color';
 import { FirebaseContext } from '../utils/firebase';
 
 const ColorPage: React.FC = () => {
   const userEmail = useSelector((state: any) => state.user.email)
   const userName = useSelector((state: any) => state.config.name)
-  const color = useSelector((state: any) => state.data.color)
 
+  // pulls in the first color from the list (sorted in reverse)
+  const color = useSelector((state: any) => state.colors[0].color)
+  
+  console.log('color', color)
   const history = useHistory()
-  const dispatch = useDispatch()
 
   const [loggingOut, setLoggingOut] = useState(false)
   const [isOn, setIsOn] = useState(true)
-  // const [color, setColor] = useState('green')
 
   const { api } = useContext(FirebaseContext) as ContextType
+  
+  useEffect(() => {
+    // asks firebase for a list of colors and listens for changes
+    api.getColors()
+  }, [api])
   
   function logout() {
     setLoggingOut(true)
@@ -39,8 +43,8 @@ const ColorPage: React.FC = () => {
   }
 
   function changeColor(color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) {
-    // setColor(color.hex)
-    dispatch(setColorAction({ color: color.hex, user: userName ? userName : userEmail }))
+    // saves colors to firebase
+    api.setCurrentColor(color.hex)
   }
 
   return (
@@ -66,16 +70,21 @@ const ColorPage: React.FC = () => {
             <IonRow>
               <IonCol className="color" style={{backgroundColor: isOn ? color : 'black'}}></IonCol>
             </IonRow>
+            <IonRow>
+              <IonCol class="ion-text-center"><h3>Hello {userName ? userName : userEmail}</h3></IonCol>
+            </IonRow>
           </IonGrid>
-        <p>Hello {userName ? userName : userEmail}</p>
         <IonItem>
           <IonLabel>Social Color is {isOn ? 'On' : 'Off'}</IonLabel>
           <IonToggle checked={isOn} onIonChange={(e) => turnOnOff(e.detail.checked)} />
         </IonItem>
-        <TwitterPicker
+        <div className="swatch">
+        <SwatchesPicker
           color={color}
           onChangeComplete={changeColor}
+          height={565}
         />
+        </div>
       </IonContent>
     </IonPage>
   );

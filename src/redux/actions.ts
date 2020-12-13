@@ -6,6 +6,8 @@ export const setConfigAction = (payload: any) => {
     return { type: 'SET_CONFIG_ACTION', payload}
 }
 
-export const setColorAction = (payload: any) => {
-    return { type: 'SET_COLOR_ACTION', payload}
+// set all colors into redux
+export const setColorsAction = (payload: any) => {
+    return { type: 'SET_COLORS_ACTION', payload }
 }
+
