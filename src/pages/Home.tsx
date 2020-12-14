@@ -1,6 +1,7 @@
-import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
 import './Home.css';
+import icon from '../images/icon.png';
 
 const Home: React.FC = () => {
   return (
@@ -13,16 +14,7 @@ const Home: React.FC = () => {
       <IonContent>
         <div className="container">
           <strong>Welcome to Social Color</strong>
-          <IonGrid class="ion-padding">
-            <IonRow>
-              <IonCol className="cell1"></IonCol>
-              <IonCol className="cell2"></IonCol>
-            </IonRow>
-            <IonRow>
-              <IonCol className="cell3"></IonCol>
-              <IonCol className="cell4"></IonCol>
-            </IonRow>
-          </IonGrid>
+          <img src={icon} alt="Color Splash"/>
           <p>
             <IonButton size="large" routerLink="/login">Login</IonButton>
             <IonButton size="large" color="secondary" routerLink="/register">Register</IonButton>

@@ -20,22 +20,22 @@
   }
 
   .cell1 {
-      background-color: red;
+      background-color: #b71c1c;
       height: 100px;
   }
 
   .cell2 {
-      background-color: green;
+      background-color: #7b1fa2;
       height: 100px;
   }
 
   .cell3 {
-      background-color: blue;
+      background-color: #194d33;
       height: 100px;
   }
 
   .cell4 {
-      background-color: yellow;
+      background-color: #e65100;
       height: 100px;
   }
 

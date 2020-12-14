@@ -2,7 +2,7 @@ const defaultState = {
     user: {},
     config: {},
     colors: [
-        { color: 'grey', name: 'test', timestamp: '123' }
+        { color: '#7b1fa2', name: 'test', timestamp: '123' }
     ],
     currentColor: {},
 }
