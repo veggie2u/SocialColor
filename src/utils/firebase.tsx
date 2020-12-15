@@ -80,10 +80,10 @@ const FirebaseProvider: React.FC = ({children}) => {
     })
   }
 
-  function setCurrentColor(color: string) {
+  function setCurrentColor(color: string, userUid: string) {
     const data: IColor = {
       color: color,
-      user: "1234",
+      user: userUid,
       timestamp: Date.now()
     }
     app.database().ref('colors').push(data)

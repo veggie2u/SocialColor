@@ -1,6 +1,9 @@
 .container {
     text-align: center;
     margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
   .container strong {
@@ -19,23 +22,13 @@
     text-decoration: none;
   }
 
-  .cell1 {
-      background-color: #b71c1c;
-      height: 100px;
+  img {
+    height: 300px;
+    width: 300px;
   }
 
-  .cell2 {
-      background-color: #7b1fa2;
-      height: 100px;
+  .imgCenter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
-
-  .cell3 {
-      background-color: #194d33;
-      height: 100px;
-  }
-
-  .cell4 {
-      background-color: #e65100;
-      height: 100px;
-  }
-

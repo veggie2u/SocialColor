@@ -17,6 +17,6 @@ type ContextType = {
         getCurrentUser: () => Promise<firebase.default.User | null>
         registerUser: (email: string, password: string) => Promise<firebase.default.auth.UserCredential | null>
         getColors: () => void
-        setCurrentColor: (color: string) => void
+        setCurrentColor: (color: string, userUid: string) => void
     }
   }

@@ -2,7 +2,7 @@ const defaultState = {
     user: {},
     config: {},
     colors: [
-        { color: '#7b1fa2', name: 'test', timestamp: '123' }
+        { color: '"#7b1fa2', name: 'test', timestamp: '123' }
     ],
     currentColor: {},
 }
@@ -13,7 +13,8 @@ export default function reducer(state = defaultState, { type, payload }: { type:
             return {
                 ...state,
                 user: {
-                    email: payload.email
+                    email: payload.email,
+                    uid: payload.uid
                 }
             }
         case 'SET_CONFIG_ACTION':

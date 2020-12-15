@@ -8,6 +8,7 @@ import { ColorResult, SwatchesPicker } from 'react-color';
 import { FirebaseContext } from '../utils/firebase';
 
 const ColorPage: React.FC = () => {
+  const userUid = useSelector((state: any) => state.user.uid)
   const userEmail = useSelector((state: any) => state.user.email)
   const userName = useSelector((state: any) => state.config.name)
 
@@ -44,7 +45,7 @@ const ColorPage: React.FC = () => {
 
   function changeColor(color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) {
     // saves colors to firebase
-    api.setCurrentColor(color.hex)
+    api.setCurrentColor(color.hex, userUid)
   }
 
   return (

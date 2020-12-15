@@ -19,6 +19,7 @@ const Login: React.FC = () => {
     const res: any = await api.loginUser(email, password)
     setLoading(false)
     if (res) {
+      console.log('res', res.user)
       dispatch(setUserAction(res.user))
       history.replace('/colorPage')
       toast('Succesfully logged in')
